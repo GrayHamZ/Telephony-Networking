@@ -164,5 +164,17 @@ ephone-dn 3
 number 2020
 exit
 
+! Dial-peer to Test network (phone numbers 3xxx)
+dial-peer voice 1 voip
+destination-pattern 3...
+session target ipv4:192.168.20.2
+exit
+
+! Dial-peer to Branch-1 (phone numbers 1xxx)
+dial-peer voice 2 voip
+destination-pattern 1...
+session target ipv4:192.168.180.1
+exit
+
 end
 write

@@ -23,7 +23,6 @@ exit
 interface gigabitEthernet 0/0.10
 encapsulation dot1Q 10
 ip address 192.168.10.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.10.1
 standby 1 priority 110
 standby 1 preempt
@@ -32,7 +31,6 @@ exit
 interface gigabitEthernet 0/0.20
 encapsulation dot1Q 20
 ip address 192.168.20.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.20.1
 standby 1 priority 110
 standby 1 preempt
@@ -42,7 +40,6 @@ exit
 interface gigabitEthernet 0/0.30
 encapsulation dot1Q 30
 ip address 192.168.30.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.30.1
 standby 1 priority 110
 standby 1 preempt
@@ -51,7 +48,6 @@ exit
 interface gigabitEthernet 0/0.40
 encapsulation dot1Q 40
 ip address 192.168.40.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.40.1
 standby 1 priority 110
 standby 1 preempt
@@ -61,7 +57,6 @@ exit
 interface gigabitEthernet 0/0.99
 encapsulation dot1Q 99 native
 ip address 192.168.99.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.99.1
 standby 1 priority 110
 standby 1 preempt
@@ -71,7 +66,6 @@ exit
 interface gigabitEthernet 0/0.50
 encapsulation dot1Q 50
 ip address 192.168.50.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.50.1
 standby 1 priority 110
 standby 1 preempt
@@ -80,7 +74,6 @@ exit
 interface gigabitEthernet 0/0.60
 encapsulation dot1Q 60
 ip address 192.168.60.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.60.1
 standby 1 priority 110
 standby 1 preempt
@@ -90,7 +83,6 @@ exit
 interface gigabitEthernet 0/0.70
 encapsulation dot1Q 70
 ip address 192.168.70.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.70.1
 standby 1 priority 110
 standby 1 preempt
@@ -99,7 +91,6 @@ exit
 interface gigabitEthernet 0/0.80
 encapsulation dot1Q 80
 ip address 192.168.80.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.80.1
 standby 1 priority 110
 standby 1 preempt
@@ -109,7 +100,6 @@ exit
 interface gigabitEthernet 0/0.90
 encapsulation dot1Q 90
 ip address 192.168.90.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.90.1
 standby 1 priority 110
 standby 1 preempt
@@ -118,7 +108,6 @@ exit
 interface gigabitEthernet 0/0.100
 encapsulation dot1Q 100
 ip address 192.168.100.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.100.1
 standby 1 priority 110
 standby 1 preempt
@@ -128,7 +117,6 @@ exit
 interface gigabitEthernet 0/0.110
 encapsulation dot1Q 110
 ip address 192.168.110.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.110.1
 standby 1 priority 110
 standby 1 preempt
@@ -137,7 +125,6 @@ exit
 interface gigabitEthernet 0/0.120
 encapsulation dot1Q 120
 ip address 192.168.120.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.120.1
 standby 1 priority 110
 standby 1 preempt
@@ -147,7 +134,6 @@ exit
 interface gigabitEthernet 0/0.130
 encapsulation dot1Q 130
 ip address 192.168.130.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.130.1
 standby 1 priority 110
 standby 1 preempt
@@ -156,7 +142,6 @@ exit
 interface gigabitEthernet 0/0.140
 encapsulation dot1Q 140
 ip address 192.168.140.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.140.1
 standby 1 priority 110
 standby 1 preempt
@@ -166,7 +151,6 @@ exit
 interface gigabitEthernet 0/0.150
 encapsulation dot1Q 150
 ip address 192.168.150.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.150.1
 standby 1 priority 110
 standby 1 preempt
@@ -175,7 +159,6 @@ exit
 interface gigabitEthernet 0/0.160
 encapsulation dot1Q 160
 ip address 192.168.160.2 255.255.255.0
-ip nat inside
 standby 1 ip 192.168.160.1
 standby 1 priority 110
 standby 1 preempt
@@ -184,7 +167,6 @@ exit
 ! WAN Interface to ISP PLDT-R2
 interface serial 0/0/0
 ip address 10.3.3.2 255.255.255.252
-ip nat outside
 no shutdown
 exit
 
@@ -357,10 +339,6 @@ exit
 ! Default route to ISP
 ip route 0.0.0.0 0.0.0.0 10.3.3.1
 
-! NAT Configuration
-access-list 1 permit 192.168.0.0 0.0.255.255
-ip nat inside source list 1 interface serial 0/0/0 overload
-
 ! Telephony Service Configuration
 telephony-service
 max-ephones 24
@@ -455,6 +433,18 @@ number 3071
 exit
 ephone-dn 24
 number 3072
+exit
+
+! Dial-peer to Branch-1 (phone numbers 1xxx)
+dial-peer voice 1 voip
+destination-pattern 1...
+session target ipv4:192.168.180.1
+exit
+
+! Dial-peer to Branch-2 (phone numbers 2xxx)
+dial-peer voice 2 voip
+destination-pattern 2...
+session target ipv4:192.168.240.1
 exit
 
 end

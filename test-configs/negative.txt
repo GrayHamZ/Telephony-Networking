@@ -1,0 +1,174 @@
+! ========================================
+! NEGATIVE COMMANDS TO REMOVE NAT CONFIG
+! Use these commands to remove NAT from Router-Test-1 and Router-Test-2
+! ========================================
+
+! ===== FOR ROUTER-TEST-1 =====
+enable
+configure terminal
+
+! Remove NAT from all sub-interfaces
+interface gigabitEthernet 0/0.10
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.20
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.30
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.40
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.99
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.50
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.60
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.70
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.80
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.90
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.100
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.110
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.120
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.130
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.140
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.150
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.160
+no ip nat inside
+exit
+
+! Remove NAT from WAN interface
+interface serial 0/0/0
+no ip nat outside
+exit
+
+! Remove NAT configuration
+no ip nat inside source list 1 interface serial 0/0/0 overload
+no access-list 1
+
+exit
+write
+
+! ===== FOR ROUTER-TEST-2 =====
+enable
+configure terminal
+
+! Remove NAT from all sub-interfaces
+interface gigabitEthernet 0/0.10
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.20
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.30
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.40
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.99
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.50
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.60
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.70
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.80
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.90
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.100
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.110
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.120
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.130
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.140
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.150
+no ip nat inside
+exit
+
+interface gigabitEthernet 0/0.160
+no ip nat inside
+exit
+
+! Remove NAT from WAN interface
+interface serial 0/0/0
+no ip nat outside
+exit
+
+! Remove NAT configuration
+no ip nat inside source list 1 interface serial 0/0/0 overload
+no access-list 1
+
+exit
+write
