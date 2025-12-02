@@ -15,6 +15,8 @@ enable
 configure terminal
 hostname Branch2-R1
 
+ipv6 unicast-routing
+
 interface gigabitEthernet 0/0
 no shutdown
 exit
@@ -23,39 +25,53 @@ exit
 interface gigabitEthernet 0/0.10
 encapsulation dot1Q 10
 ip address 192.168.230.1 255.255.255.0
+ipv6 address 2001:db8:ACAD:230::1/64
+ipv6 enable
 exit
 
 interface gigabitEthernet 0/0.20
 encapsulation dot1Q 20
 ip address 192.168.240.1 255.255.255.0
+ipv6 address 2001:db8:ACAD:240::1/64
+ipv6 enable
 exit
 
 ! Sub-interfaces for Department M
 interface gigabitEthernet 0/0.30
 encapsulation dot1Q 30
 ip address 192.168.250.1 255.255.255.0
+ipv6 address 2001:db8:ACAD:250::1/64
+ipv6 enable
 exit
 
 interface gigabitEthernet 0/0.40
 encapsulation dot1Q 40
 ip address 192.168.251.1 255.255.255.0
+ipv6 address 2001:db8:ACAD:251::1/64
+ipv6 enable
 exit
 
 ! Sub-interfaces for Department N
 interface gigabitEthernet 0/0.50
 encapsulation dot1Q 50
 ip address 192.168.252.1 255.255.255.0
+ipv6 address 2001:db8:ACAD:252::1/64
+ipv6 enable
 exit
 
 interface gigabitEthernet 0/0.60
 encapsulation dot1Q 60
 ip address 192.168.253.1 255.255.255.0
+ipv6 address 2001:db8:ACAD:253::1/64
+ipv6 enable
 exit
 
 ! Management VLAN
 interface gigabitEthernet 0/0.99
 encapsulation dot1Q 99 native
 ip address 192.168.254.1 255.255.255.0
+ipv6 address 2001:db8:ACAD:254::1/64
+ipv6 enable
 exit
 
 ip dhcp excluded-address 192.168.230.1

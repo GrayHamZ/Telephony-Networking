@@ -15,6 +15,8 @@ enable
 configure terminal
 hostname Router-Test-1
 
+ipv6 unicast-routing
+
 interface gigabitEthernet 0/0
 no shutdown
 exit
@@ -23,6 +25,8 @@ exit
 interface gigabitEthernet 0/0.10
 encapsulation dot1Q 10
 ip address 192.168.10.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:10::1/64
+ipv6 enable
 standby 1 ip 192.168.10.1
 standby 1 priority 110
 standby 1 preempt
@@ -31,6 +35,8 @@ exit
 interface gigabitEthernet 0/0.20
 encapsulation dot1Q 20
 ip address 192.168.20.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:20::1/64
+ipv6 enable
 standby 1 ip 192.168.20.1
 standby 1 priority 110
 standby 1 preempt
@@ -40,6 +46,8 @@ exit
 interface gigabitEthernet 0/0.30
 encapsulation dot1Q 30
 ip address 192.168.30.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:30::1/64
+ipv6 enable
 standby 1 ip 192.168.30.1
 standby 1 priority 110
 standby 1 preempt
@@ -48,6 +56,8 @@ exit
 interface gigabitEthernet 0/0.40
 encapsulation dot1Q 40
 ip address 192.168.40.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:40::1/64
+ipv6 enable
 standby 1 ip 192.168.40.1
 standby 1 priority 110
 standby 1 preempt
@@ -57,6 +67,8 @@ exit
 interface gigabitEthernet 0/0.99
 encapsulation dot1Q 99 native
 ip address 192.168.99.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:99::1/64
+ipv6 enable
 standby 1 ip 192.168.99.1
 standby 1 priority 110
 standby 1 preempt
@@ -66,6 +78,8 @@ exit
 interface gigabitEthernet 0/0.50
 encapsulation dot1Q 50
 ip address 192.168.50.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:50::1/64
+ipv6 enable
 standby 1 ip 192.168.50.1
 standby 1 priority 110
 standby 1 preempt
@@ -74,6 +88,8 @@ exit
 interface gigabitEthernet 0/0.60
 encapsulation dot1Q 60
 ip address 192.168.60.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:60::1/64
+ipv6 enable
 standby 1 ip 192.168.60.1
 standby 1 priority 110
 standby 1 preempt
@@ -83,6 +99,8 @@ exit
 interface gigabitEthernet 0/0.70
 encapsulation dot1Q 70
 ip address 192.168.70.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:70::1/64
+ipv6 enable
 standby 1 ip 192.168.70.1
 standby 1 priority 110
 standby 1 preempt
@@ -91,6 +109,8 @@ exit
 interface gigabitEthernet 0/0.80
 encapsulation dot1Q 80
 ip address 192.168.80.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:80::1/64
+ipv6 enable
 standby 1 ip 192.168.80.1
 standby 1 priority 110
 standby 1 preempt
@@ -100,6 +120,8 @@ exit
 interface gigabitEthernet 0/0.90
 encapsulation dot1Q 90
 ip address 192.168.90.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:90::1/64
+ipv6 enable
 standby 1 ip 192.168.90.1
 standby 1 priority 110
 standby 1 preempt
@@ -108,6 +130,8 @@ exit
 interface gigabitEthernet 0/0.100
 encapsulation dot1Q 100
 ip address 192.168.100.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:100::1/64
+ipv6 enable
 standby 1 ip 192.168.100.1
 standby 1 priority 110
 standby 1 preempt
@@ -117,6 +141,8 @@ exit
 interface gigabitEthernet 0/0.110
 encapsulation dot1Q 110
 ip address 192.168.110.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:110::1/64
+ipv6 enable
 standby 1 ip 192.168.110.1
 standby 1 priority 110
 standby 1 preempt
@@ -125,6 +151,8 @@ exit
 interface gigabitEthernet 0/0.120
 encapsulation dot1Q 120
 ip address 192.168.120.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:120::1/64
+ipv6 enable
 standby 1 ip 192.168.120.1
 standby 1 priority 110
 standby 1 preempt
@@ -134,6 +162,8 @@ exit
 interface gigabitEthernet 0/0.130
 encapsulation dot1Q 130
 ip address 192.168.130.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:130::1/64
+ipv6 enable
 standby 1 ip 192.168.130.1
 standby 1 priority 110
 standby 1 preempt
@@ -142,6 +172,8 @@ exit
 interface gigabitEthernet 0/0.140
 encapsulation dot1Q 140
 ip address 192.168.140.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:140::1/64
+ipv6 enable
 standby 1 ip 192.168.140.1
 standby 1 priority 110
 standby 1 preempt
@@ -151,6 +183,8 @@ exit
 interface gigabitEthernet 0/0.150
 encapsulation dot1Q 150
 ip address 192.168.150.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:150::1/64
+ipv6 enable
 standby 1 ip 192.168.150.1
 standby 1 priority 110
 standby 1 preempt
@@ -159,6 +193,8 @@ exit
 interface gigabitEthernet 0/0.160
 encapsulation dot1Q 160
 ip address 192.168.160.2 255.255.255.0
+ipv6 address 2001:db8:ACAD:160::1/64
+ipv6 enable
 standby 1 ip 192.168.160.1
 standby 1 priority 110
 standby 1 preempt
