@@ -19,6 +19,7 @@ interface gigabitEthernet 0/0
 no shutdown
 exit
 
+! Sub-interfaces for Department I
 interface gigabitEthernet 0/0.10
 encapsulation dot1Q 10
 ip address 192.168.170.1 255.255.255.0
@@ -29,6 +30,29 @@ encapsulation dot1Q 20
 ip address 192.168.180.1 255.255.255.0
 exit
 
+! Sub-interfaces for Department J
+interface gigabitEthernet 0/0.30
+encapsulation dot1Q 30
+ip address 192.168.190.1 255.255.255.0
+exit
+
+interface gigabitEthernet 0/0.40
+encapsulation dot1Q 40
+ip address 192.168.200.1 255.255.255.0
+exit
+
+! Sub-interfaces for Department K
+interface gigabitEthernet 0/0.50
+encapsulation dot1Q 50
+ip address 192.168.210.1 255.255.255.0
+exit
+
+interface gigabitEthernet 0/0.60
+encapsulation dot1Q 60
+ip address 192.168.220.1 255.255.255.0
+exit
+
+! Management VLAN
 interface gigabitEthernet 0/0.99
 encapsulation dot1Q 99 native
 ip address 192.168.199.1 255.255.255.0
@@ -36,17 +60,51 @@ exit
 
 ip dhcp excluded-address 192.168.170.1
 ip dhcp excluded-address 192.168.180.1
+ip dhcp excluded-address 192.168.190.1
+ip dhcp excluded-address 192.168.200.1
+ip dhcp excluded-address 192.168.210.1
+ip dhcp excluded-address 192.168.220.1
 
-ip dhcp pool DATA_POOL
+! DHCP Pool for Department I - Data
+ip dhcp pool DATA_POOL_DEPT_I
 network 192.168.170.0 255.255.255.0
 default-router 192.168.170.1
 dns-server 192.168.150.8
 exit
 
-ip dhcp pool VOICE_POOL
+! DHCP Pool for Department I - Voice
+ip dhcp pool VOICE_POOL_DEPT_I
 network 192.168.180.0 255.255.255.0
 default-router 192.168.180.1
 option 150 ip 192.168.180.1
+exit
+
+! DHCP Pool for Department J - Data
+ip dhcp pool DATA_POOL_DEPT_J
+network 192.168.190.0 255.255.255.0
+default-router 192.168.190.1
+dns-server 192.168.150.8
+exit
+
+! DHCP Pool for Department J - Voice
+ip dhcp pool VOICE_POOL_DEPT_J
+network 192.168.200.0 255.255.255.0
+default-router 192.168.200.1
+option 150 ip 192.168.200.1
+exit
+
+! DHCP Pool for Department K - Data
+ip dhcp pool DATA_POOL_DEPT_K
+network 192.168.210.0 255.255.255.0
+default-router 192.168.210.1
+dns-server 192.168.150.8
+exit
+
+! DHCP Pool for Department K - Voice
+ip dhcp pool VOICE_POOL_DEPT_K
+network 192.168.220.0 255.255.255.0
+default-router 192.168.220.1
+option 150 ip 192.168.220.1
 exit
 
 ! WAN Interface to ISP PLDT-R1 (Serial)
@@ -61,6 +119,10 @@ router ospf 1
 router-id 1.1.1.1
 network 192.168.170.0 0.0.0.255 area 0
 network 192.168.180.0 0.0.0.255 area 0
+network 192.168.190.0 0.0.0.255 area 0
+network 192.168.200.0 0.0.0.255 area 0
+network 192.168.210.0 0.0.0.255 area 0
+network 192.168.220.0 0.0.0.255 area 0
 network 192.168.199.0 0.0.0.255 area 0
 exit
 
@@ -81,17 +143,26 @@ redistribute eigrp 100 subnets
 exit
 
 telephony-service
-max-ephones 5
-max-dn 5
+max-ephones 3
+max-dn 3
 ip source-address 192.168.180.1 port 2000
-auto assign 1 to 5
+auto assign 1 to 3
 exit
+
+! Phone Directory Number - Department I
 ephone-dn 1
 number 1001
+exit
+
+! Phone Directory Number - Department J
 ephone-dn 2
-number 1002
+number 1010
+exit
+
+! Phone Directory Number - Department K
 ephone-dn 3
-number 1003
+number 1020
+exit
 
 end
 write

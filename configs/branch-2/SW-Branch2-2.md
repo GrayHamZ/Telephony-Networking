@@ -1,37 +1,37 @@
 enable
 configure terminal
 
-host SW-Branch1-2
+host SW-Branch2-2
 
-! VLANs for Department I
+! VLANs for Department L
 vlan 10
-name DATA_DEPT_I
+name DATA_DEPT_L
 exit
 vlan 20
-name VOICE_DEPT_I
+name VOICE_DEPT_L
 exit
 
-! VLANs for Department J
+! VLANs for Department M
 vlan 30
-name DATA_DEPT_J
+name DATA_DEPT_M
 exit
 vlan 40
-name VOICE_DEPT_J
+name VOICE_DEPT_M
 exit
 
-! VLANs for Department K
+! VLANs for Department N
 vlan 50
-name DATA_DEPT_K
+name DATA_DEPT_N
 exit
 vlan 60
-name VOICE_DEPT_K
+name VOICE_DEPT_N
 exit
 
 vlan 99
 name NATIVE_VLAN
 exit
 
-! Access ports for IP Phones and PCs (Department J)
+! Access ports for IP Phones and PCs (Department M)
 interface range fastEthernet 0/1 - 10
 switchport mode access
 switchport access vlan 30
@@ -40,7 +40,7 @@ spanning-tree portfast
 no shutdown
 exit
 
-! Access ports for IP Phones and PCs (Department K)
+! Access ports for IP Phones and PCs (Department N)
 interface range fastEthernet 0/11 - 20
 switchport mode access
 switchport access vlan 50
