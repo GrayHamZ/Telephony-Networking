@@ -1,0 +1,34 @@
+enable
+configure terminal
+hostname SW-Test-5
+
+! VLANs for Department E
+vlan 90
+name DATA_DEPT_E
+exit
+vlan 100
+name VOICE_DEPT_E
+exit
+vlan 99
+name NATIVE_VLAN
+exit
+
+! Access ports for IP Phones and PCs (Department E)
+interface range fastEthernet 0/1 - 10
+switchport mode access
+switchport access vlan 90
+switchport voice vlan 100
+spanning-tree portfast
+no shutdown
+exit
+
+! Trunk to MLS-Test-1
+interface fastEthernet 0/24
+switchport mode trunk
+switchport trunk native vlan 99
+switchport trunk allowed vlan 90,100,99
+no shutdown
+exit
+
+end
+write
