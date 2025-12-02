@@ -132,6 +132,21 @@ standby 1 ip 192.168.140.1
 standby 1 priority 100
 exit
 
+! Sub-interfaces for SW6 (Department H)
+interface gigabitEthernet 0/0.150
+encapsulation dot1Q 150
+ip address 192.168.150.3 255.255.255.0
+standby 1 ip 192.168.150.1
+standby 1 priority 100
+exit
+
+interface gigabitEthernet 0/0.160
+encapsulation dot1Q 160
+ip address 192.168.160.3 255.255.255.0
+standby 1 ip 192.168.160.1
+standby 1 priority 100
+exit
+
 ! DHCP Configuration
 ip dhcp excluded-address 192.168.10.1 192.168.10.3
 ip dhcp excluded-address 192.168.20.1 192.168.20.3
@@ -147,6 +162,8 @@ ip dhcp excluded-address 192.168.110.1 192.168.110.3
 ip dhcp excluded-address 192.168.120.1 192.168.120.3
 ip dhcp excluded-address 192.168.130.1 192.168.130.3
 ip dhcp excluded-address 192.168.140.1 192.168.140.3
+ip dhcp excluded-address 192.168.150.1 192.168.150.3
+ip dhcp excluded-address 192.168.160.1 192.168.160.3
 
 ! DHCP Pool for Department A - Data
 ip dhcp pool DATA_POOL_DEPT_A
@@ -246,6 +263,20 @@ default-router 192.168.140.1
 option 150 ip 192.168.140.1
 exit
 
+! DHCP Pool for Department H - Data
+ip dhcp pool DATA_POOL_DEPT_H
+network 192.168.150.0 255.255.255.0
+default-router 192.168.150.1
+dns-server 8.8.8.8
+exit
+
+! DHCP Pool for Department H - Voice
+ip dhcp pool VOICE_POOL_DEPT_H
+network 192.168.160.0 255.255.255.0
+default-router 192.168.160.1
+option 150 ip 192.168.160.1
+exit
+
 ! OSPF Configuration
 router ospf 1
 router-id 2.2.2.2
@@ -263,15 +294,17 @@ network 192.168.110.0 0.0.0.255 area 0
 network 192.168.120.0 0.0.0.255 area 0
 network 192.168.130.0 0.0.0.255 area 0
 network 192.168.140.0 0.0.0.255 area 0
+network 192.168.150.0 0.0.0.255 area 0
+network 192.168.160.0 0.0.0.255 area 0
 network 192.168.99.0 0.0.0.255 area 0
 exit
 
 ! Telephony Service Configuration (Standby - only active when this router becomes HSRP active)
 telephony-service
-max-ephones 21
-max-dn 21
+max-ephones 24
+max-dn 24
 ip source-address 192.168.20.3 port 2000
-auto assign 1 to 21
+auto assign 1 to 24
 exit
 
 ! Phone Directory Numbers - Department A (SW1)
@@ -349,6 +382,17 @@ number 3061
 exit
 ephone-dn 21
 number 3062
+exit
+
+! Phone Directory Numbers - Department H (SW6)
+ephone-dn 22
+number 3070
+exit
+ephone-dn 23
+number 3071
+exit
+ephone-dn 24
+number 3072
 exit
 
 end

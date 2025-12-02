@@ -9,6 +9,12 @@ exit
 vlan 120
 name VOICE_DEPT_F
 exit
+vlan 150
+name DATA_DEPT_H
+exit
+vlan 160
+name VOICE_DEPT_H
+exit
 vlan 99
 name NATIVE_VLAN
 exit
@@ -22,11 +28,20 @@ spanning-tree portfast
 no shutdown
 exit
 
+! Access ports for IP Phones and PCs (Department H)
+interface range fastEthernet 0/11 - 20
+switchport mode access
+switchport access vlan 150
+switchport voice vlan 160
+spanning-tree portfast
+no shutdown
+exit
+
 ! Trunk to MLS-Test-2
 interface fastEthernet 0/24
 switchport mode trunk
 switchport trunk native vlan 99
-switchport trunk allowed vlan 110,120,99
+switchport trunk allowed vlan 110,120,150,160,99
 no shutdown
 exit
 
