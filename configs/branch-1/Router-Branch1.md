@@ -21,32 +21,32 @@ exit
 
 interface gigabitEthernet 0/0.10
 encapsulation dot1Q 10
-ip address 192.168.10.1 255.255.255.0
+ip address 192.168.170.1 255.255.255.0
 exit
 
 interface gigabitEthernet 0/0.20
 encapsulation dot1Q 20
-ip address 192.168.20.1 255.255.255.0
+ip address 192.168.180.1 255.255.255.0
 exit
 
 interface gigabitEthernet 0/0.99
 encapsulation dot1Q 99 native
-ip address 192.168.99.1 255.255.255.0
+ip address 192.168.199.1 255.255.255.0
 exit
 
-ip dhcp excluded-address 192.168.10.1
-ip dhcp excluded-address 192.168.20.1
+ip dhcp excluded-address 192.168.170.1
+ip dhcp excluded-address 192.168.180.1
 
 ip dhcp pool DATA_POOL
-network 192.168.10.0 255.255.255.0
-default-router 192.168.10.1
-dns-server 8.8.8.8
+network 192.168.170.0 255.255.255.0
+default-router 192.168.170.1
+dns-server 192.168.150.8
 exit
 
 ip dhcp pool VOICE_POOL
-network 192.168.20.0 255.255.255.0
-default-router 192.168.20.1
-option 150 ip 192.168.20.1
+network 192.168.180.0 255.255.255.0
+default-router 192.168.180.1
+option 150 ip 192.168.180.1
 exit
 
 ! WAN Interface to ISP PLDT-R1 (Serial)
@@ -59,9 +59,9 @@ exit
 ! OSPF Configuration for internal networks
 router ospf 1
 router-id 1.1.1.1
-network 192.168.10.0 0.0.0.255 area 0
-network 192.168.20.0 0.0.0.255 area 0
-network 192.168.99.0 0.0.0.255 area 0
+network 192.168.170.0 0.0.0.255 area 0
+network 192.168.180.0 0.0.0.255 area 0
+network 192.168.199.0 0.0.0.255 area 0
 exit
 
 ! EIGRP Configuration for ISP connectivity
@@ -83,7 +83,7 @@ exit
 telephony-service
 max-ephones 5
 max-dn 5
-ip source-address 192.168.20.1 port 2000
+ip source-address 192.168.180.1 port 2000
 auto assign 1 to 5
 exit
 ephone-dn 1
@@ -92,5 +92,6 @@ ephone-dn 2
 number 1002
 ephone-dn 3
 number 1003
+
 end
 write
