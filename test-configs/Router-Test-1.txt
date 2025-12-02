@@ -180,13 +180,14 @@ ip dhcp excluded-address 192.168.120.1 192.168.120.3
 ip dhcp excluded-address 192.168.130.1 192.168.130.3
 ip dhcp excluded-address 192.168.140.1 192.168.140.3
 ip dhcp excluded-address 192.168.150.1 192.168.150.3
+ip dhcp excluded-address 192.168.150.8
 ip dhcp excluded-address 192.168.160.1 192.168.160.3
 
 ! DHCP Pool for Department A - Data
 ip dhcp pool DATA_POOL_DEPT_A
 network 192.168.10.0 255.255.255.0
 default-router 192.168.10.1
-dns-server 8.8.8.8
+dns-server 192.168.150.8
 exit
 
 ! DHCP Pool for Department A - Voice
@@ -200,7 +201,7 @@ exit
 ip dhcp pool DATA_POOL_DEPT_B
 network 192.168.30.0 255.255.255.0
 default-router 192.168.30.1
-dns-server 8.8.8.8
+dns-server 192.168.150.8
 exit
 
 ! DHCP Pool for Department B - Voice
@@ -214,7 +215,7 @@ exit
 ip dhcp pool DATA_POOL_DEPT_C
 network 192.168.50.0 255.255.255.0
 default-router 192.168.50.1
-dns-server 8.8.8.8
+dns-server 192.168.150.8
 exit
 
 ! DHCP Pool for Department C - Voice
@@ -228,7 +229,7 @@ exit
 ip dhcp pool DATA_POOL_DEPT_D
 network 192.168.70.0 255.255.255.0
 default-router 192.168.70.1
-dns-server 8.8.8.8
+dns-server 192.168.150.8
 exit
 
 ! DHCP Pool for Department D - Voice
@@ -242,7 +243,7 @@ exit
 ip dhcp pool DATA_POOL_DEPT_E
 network 192.168.90.0 255.255.255.0
 default-router 192.168.90.1
-dns-server 8.8.8.8
+dns-server 192.168.150.8
 exit
 
 ! DHCP Pool for Department E - Voice
@@ -256,7 +257,7 @@ exit
 ip dhcp pool DATA_POOL_DEPT_F
 network 192.168.110.0 255.255.255.0
 default-router 192.168.110.1
-dns-server 8.8.8.8
+dns-server 192.168.150.8
 exit
 
 ! DHCP Pool for Department F - Voice
@@ -270,7 +271,7 @@ exit
 ip dhcp pool DATA_POOL_DEPT_G
 network 192.168.130.0 255.255.255.0
 default-router 192.168.130.1
-dns-server 8.8.8.8
+dns-server 192.168.150.8
 exit
 
 ! DHCP Pool for Department G - Voice
@@ -284,7 +285,7 @@ exit
 ip dhcp pool DATA_POOL_DEPT_H
 network 192.168.150.0 255.255.255.0
 default-router 192.168.150.1
-dns-server 8.8.8.8
+dns-server 192.168.150.8
 exit
 
 ! DHCP Pool for Department H - Voice

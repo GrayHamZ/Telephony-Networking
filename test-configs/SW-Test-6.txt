@@ -37,6 +37,13 @@ spanning-tree portfast
 no shutdown
 exit
 
+! Server Port (DNS/Web/Email Server)
+interface fastEthernet 0/21
+switchport mode access
+switchport access vlan 150
+no shutdown
+exit
+
 ! Trunk to MLS-Test-2
 interface fastEthernet 0/24
 switchport mode trunk
