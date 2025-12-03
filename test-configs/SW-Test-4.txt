@@ -2,6 +2,14 @@ enable
 configure terminal
 hostname SW-Test-4
 
+ip domain-name indiansupport.com
+crypto key generate rsa general-keys modulus 1024
+username admin secret cisco
+line vty 0 15
+login local
+transport input ssh
+exit
+
 ! VLANs for Department D
 vlan 70
 name DATA_DEPT_D
@@ -13,11 +21,22 @@ vlan 99
 name NATIVE_VLAN
 exit
 
+interface vlan 99
+ip address 192.168.99.14 255.255.255.0
+no shutdown
+exit
+
+ip default-gateway 192.168.99.1
+
 ! Access ports for IP Phones and PCs (Department D)
 interface range fastEthernet 0/1 - 10
 switchport mode access
 switchport access vlan 70
 switchport voice vlan 80
+switchport port-security
+switchport port-security maximum 3
+switchport port-security mac-address sticky
+switchport port-security violation restrict
 spanning-tree portfast
 no shutdown
 exit

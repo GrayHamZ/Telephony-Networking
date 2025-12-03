@@ -2,6 +2,14 @@ enable
 configure terminal
 hostname MLS-Test-2
 
+ip domain-name indiansupport.com
+crypto key generate rsa general-keys modulus 1024
+username admin secret cisco
+line vty 0 15
+login local
+transport input ssh
+exit
+
 ! Create VLANs for both departments
 vlan 10
 name DATA_DEPT_A
@@ -54,6 +62,13 @@ exit
 vlan 99
 name NATIVE_VLAN
 exit
+
+interface vlan 99
+ip address 192.168.99.22 255.255.255.0
+no shutdown
+exit
+
+ip default-gateway 192.168.99.1
 
 ! Trunk to Router-Test-2 (g0/0 Router -> g0/1 MLS2)
 interface gigabitEthernet 0/1

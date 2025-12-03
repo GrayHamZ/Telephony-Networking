@@ -15,6 +15,14 @@ enable
 configure terminal
 hostname Router-Test-2
 
+ip domain-name indiansupport.com
+crypto key generate rsa general-keys modulus 1024
+username admin secret cisco
+line vty 0 4
+login local
+transport input ssh
+exit
+
 ipv6 unicast-routing
 
 interface gigabitEthernet 0/0
